@@ -1,0 +1,47 @@
+<!--pages/contact/contact.wxml-->
+<view>
+	<scroll-view scroll-y scroll-into-view='{{toView}}' style='height: {{scrollHeight}};'>
+		<!-- <view class='scrollMsg'> -->
+		<block wx:key wx:for='{{msgList}}' wx:for-index="index">
+
+			<!-- 单个消息1 机器人发出（左） -->
+			<view wx:if='{{item.speaker=="server"}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+				<view style='width: 11vw; height: 11vw; margin-right: 3vw'>
+					<image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../image/bot.jpg'></image>
+				</view>
+				<view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
+					<!-- <image style='width: 4vw;' src='../../image/left_msg.png' mode='widthFix'></image> -->
+				</view>
+				<view class='leftMsg'>{{item.content}}</view>
+			</view>
+
+			<!-- 单个消息2 用户发出（右） -->
+			<view wx:else id='msg-{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+				<view class='rightMsg' style="margin-right: 3vw;">{{item.content}}</view>
+				<view style='width: 11vw; height: 11vw; margin-right: -10vw; display: flex; align-items: center; z-index: 9;'>
+					<image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='../../image/elderly.jpg'></image>
+				</view>
+				<view style='width: 11vw; height: 11vw;'>
+					<image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}'></image>
+				</view>
+			</view>
+
+		</block>
+		<!-- 占位 -->
+		<view style='width: 100%; height: 18vw;'></view>
+	</scroll-view>
+
+	<view class='inputRoom' style='bottom: {{inputBottom}}'>
+		<!-- <image style='width: 7vw; margin-left: 3.2vw;' src='../../image/me.jpg' mode='widthFix'></image> -->
+		<!-- <button bindtap="sendMsg">发送</button> -->
+		<button bindtap="play_wav">播放</button>
+		<input bindinput="inputChange" value="{{msg}}"></input>
+		<!-- <input bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindblur='blur'></input> -->
+	<!-- </view>
+	<view class="container"> -->
+		<!-- <button bindtap="startRecord">开始录音</button> -->
+		<!-- <button bindtap="stopRecord">停止录音</button> -->
+		<button bindtouchstart="startRecord" bindtouchend="stopRecord">语音</button>
+		<button bindtouchstart="sendMsg">发送</button>
+	</view>
+</view>

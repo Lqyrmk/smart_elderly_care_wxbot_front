@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+	<button bindtap="startRecord">开始录音</button>
+	<button bindtap="stopRecord">停止录音</button>
+	<button bindtouchstart="startRecord" bindtouchend="stopRecord">按住录音</button>
+</view>
